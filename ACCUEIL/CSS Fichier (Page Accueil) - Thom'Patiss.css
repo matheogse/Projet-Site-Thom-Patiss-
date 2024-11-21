@@ -1,0 +1,657 @@
+/*-------------------------------------------------------------------------------------*/
+/*PAGE GENERALE*/
+body {
+    margin: 0;
+}
+
+/*-------------------------------------------------------------------------------------*/
+/*ZOOM ET DEZOOM SUR LES TEXTES DU SITE*/
+
+    .slide-in {
+        opacity: 0; 
+        transform: translateY(100px);
+        transition: opacity 1s ease, transform 1s ease;
+    }
+    
+    .slide-in.active {
+        opacity: 1; 
+        transform: translateY(0); 
+    }
+    /*Barre de défilement supérieur*/
+    #barre_de_defilement_superieur {
+        text-align: center;
+        background-color: rgb(0, 0, 0);
+        color: white;
+        padding-top: 0.5vh;
+        padding-bottom: 0.5vh;
+        overflow: hidden; 
+        font-size: 2vh;
+
+    }
+    @keyframes defilement {
+        from {
+            margin-left: 100%; 
+        }
+        to {
+            margin-left: -100%; 
+        }
+    }
+    /*Défilement animé de la barre de défilement supérieur*/
+    #texte_defilant {
+        white-space: nowrap;
+        display: inline-block;
+        animation: defilement 25s linear infinite;
+    }
+    
+/*-------------------------------------------------------------------------------------*/
+/*NAVBAR DE MENU*/
+
+    /*NavBar Globale de menu*/
+    #menu {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: fixed;
+        width: 100vw;
+        background-color:transparent;   
+        border-radius: 100px;
+        z-index: 1;
+        transition: 3s all;
+        transition-duration: 0.4s;
+        transition-timing-function: 2s ease;
+        margin-top: 0;
+        
+    }
+    /*Menu lors du déroulement*/
+    #menu.scrolled{
+        display: flex;
+        border-radius: 100px;
+        z-index: 1;
+        background-color: white;
+        border: solid;
+        margin-top: 1vh;
+        width: 95vw;
+        top: 0;
+        margin-left: 2vw;
+        justify-content: center;
+    }
+    /*Logo coin supérieur gauche*/
+    #logo_sup_gauche {
+        width: 10vw;
+        margin-bottom: 0.3125vw;
+        margin-top: 0.3125vw;
+        padding-right: 1.875vw;
+        padding-left: 0.625vw;
+        transition: opacity 0.5s ease;
+        z-index: 1;
+    }
+    /*Logo coin supérieur gauche au survol*/
+    #logo_sup_gauche:hover{
+        opacity: 0.6;
+    }
+    /*Logo ajout bordure si deroulement*/
+    #logo_sup_gauche.scrolled{
+        border-right: solid 0.1875vw;
+    }
+    /*Liste des parties dans menu global UL*/
+    #ul_global_menu {
+        list-style: none;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-right: 1.25vw;
+    }
+    /*Liste des parties dans menu un a un LI*/
+    #ul_global_menu li {
+        margin: 0 1.25vw;
+    }
+    /*Texte des parties dans menu*/
+    #ul_global_menu a {
+        text-decoration: none;
+        color:black;
+        font-size: 1.25vw;
+        font-family:'Cormorant Garamond', serif;
+        padding: 0.3vw;
+
+    }
+    /*Passage flottant sur elements du menu*/
+    #ul_global_menu a:hover{
+        color: rgb(173, 24, 24);  
+        border-bottom: 0.1875vw solid rgb(70, 52, 52);
+    }
+    /*Li recettes au survol engendre pour ul sous menu recettes*/
+    #recette_onglet:hover #sous_menu_recettes {
+        display: flex;
+        background-color: white;
+        flex-direction: column;
+        position: fixed;  
+        width: 100vw; 
+        left: 0;
+        right: 0;
+        height: auto;
+        padding-left: 0;
+        padding-top: 4vh;
+        padding-bottom: 4vh;
+        flex-wrap: wrap;
+        margin-left: 0vw;
+        margin-top: 2.3vw;
+    }
+
+    #menu.scrolled #recette_onglet #sous_menu_recettes {
+        width: 90vw;
+        justify-self: center;
+        margin-top: 2.7vw;
+        border: solid;
+    }
+
+
+    /*Si onglet recettes non survolé alors sous menu recettes*/
+    #recette_onglet:not(:hover) #sous_menu_recettes {
+        transition-delay: 0.2s;
+    }
+    /*Sous menu recettes ul*/
+    #sous_menu_recettes ul{
+        justify-content: center;
+    }
+    /*Sous menu recettes li (contenu du sous menu)*/
+    #sous_menu_recettes li{
+        padding-left: 0;
+        text-align: center;
+        padding-top: 2vw;
+    }
+    /*Sous menu recettes texte*/
+    #sous_menu_recettes a{
+        font-size: 1.5vw;
+    }
+    /*Sous partie menu recettes globale*/
+    #sous_menu_recettes{
+        display: none ;
+        list-style: none;
+        display: flex;
+        background-color: white;
+        flex-direction: column;
+        position: fixed;  
+        width: 100vw; 
+        left: 0;
+        right: 0;
+        height: auto;
+        padding-left: 0;
+        padding-top: 4vh;
+        padding-bottom: 4vh;
+        flex-wrap: wrap;
+        margin-left: -200vw;
+        margin-top: 2.3vw;
+        transition: all 0.5s ease;
+        z-index: -1;
+    }
+    /*Si scroll (menu) alors sous menu recettes*/
+    #menu.scrolled #sous_menu_recettes{
+        border-bottom: solid ;
+    }
+    /*Logo de menu fenetre reduite*/
+    #logo_menu {
+        font-size: 1.5rem;
+        cursor: pointer;
+        display: none;
+    }
+
+/*-------------------------------------------------------------------------------------*/
+/*HAUT ACCUEIL TEXTES ET IMAGES*/
+
+    /*Image en haut en fond de la nav bar*/
+    #image_haut_accueil img[src="/ACCUEIL/Images/Macarons image accueil.webp"]{
+        width: 100vw;
+        height: auto;
+        display: block;
+        filter: blur(2px);
+        border: 0;
+    }
+    /*Ensemble textes images et reseaux pour accueil avec image fond en haut*/
+    #image_haut_accueil{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        max-width: 100vw;
+        overflow: hidden;
+    }
+    #image_haut_accueil_tel{
+        display: none;
+    }
+    /*Texte par dessus image en haut accueil*/
+    #texte_centrer_sur_image_accueil{
+        position:absolute;
+        display:flex;
+        text-align: center;
+        flex-direction: column;
+    }
+    /*Parametre séparation et couleur texte sur image accueil*/
+    #texte_centrer_sur_image_accueil h1,
+    #texte_centrer_sur_image_accueil h2,
+    #texte_centrer_sur_image_accueil img {
+        text-shadow: 
+        0 0 0.625vw rgba(255, 255, 255, 0.8), 
+        0 0 1.25vw rgba(255, 255, 255, 0.8),
+        0 0 1.875vw rgba(255, 255, 255, 0.8);
+        margin: 0.375vw; 
+    }
+    /*Grand titre principal sur image accueil*/
+    #texte_centrer_sur_image_accueil h1{
+        letter-spacing: 0.125px;
+        font-style: italic;
+        font-size: 11vw;
+        font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    }
+    /*Sous titre principal sur image accueil*/
+    #texte_centrer_sur_image_accueil h2{
+        font-size: 3.5vw;
+    }
+    /*Réseaux sociaux sur image accueil principale liste ensemble*/
+    #texte_centrer_sur_image_accueil ul{
+        list-style: none;
+        display: flex;
+        padding: 0;
+        margin: 0 30vw;
+        justify-content: space-between;
+    }
+    /*Réseaux sociaux sur image accueil parametres logos*/
+    #texte_centrer_sur_image_accueil img{
+        width: 6vw;
+        height: auto;
+        transition: opacity 0.5s ease;
+        border-radius: 50vw;
+        box-shadow: 
+        0 0 0.625vw rgba(255, 255, 255, 0.8), 
+        0 0 1.25vw rgba(255, 255, 255, 0.8), 
+        0 0 1.875vw rgba(255, 255, 255, 0.8);;
+    }
+    /*Réseaux sociaux sur image accueil lors du survol*/
+    #texte_centrer_sur_image_accueil img:hover{
+        opacity: 0.6;
+    }
+
+/*-------------------------------------------------------------------------------------*/
+/*PRESENTATION ET BIO DU SITE*/
+
+    /*Présentation du site class globale pour formes cadre*/
+    #Presentation_site {
+        text-align: center;
+    }
+    /*Présentation du site global texte*/
+    #Presentation_site_generale {
+        text-align: center;
+        background-color:white;
+        padding-top: 5vw;
+        padding-bottom: 5vw;
+        padding-right: 3vw;
+        padding-left: 3vw;
+    }
+    /*Présentation du site textes*/
+    #Presentation_site_generale a{
+        color: black;
+        font-weight: bold;
+    }
+    /*Corps du site sans menu*/
+    #Corps_de_site_sans_menu {
+        background: transparent;
+        font-family: 'cabinet-bold',Georgia,"Times New Roman",serif;
+        font-size: 1.125vw;
+        text-align: center;
+    }
+
+/*-------------------------------------------------------------------------------------*/
+/*IMAGES ET CITATION ACCUEIL*/
+
+    /*Parametres de l'image et du texte sur celle ci en présentation avec photo travail sur millefeuille*/
+    #image_entre_presentation_et_exemple{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        max-width: 100vw;
+        overflow: hidden;
+    }
+    /*Image en fond travail millefeuille parametres*/
+    #image_entre_presentation_et_exemple img{
+        width: 100vw;
+    }
+    /*Logo des réseaux presentation accueil après survol*/
+    #citation_accueil{
+        position:absolute;
+        display:flex;
+        text-align: center;
+        flex-direction: column;
+        color: white;
+        font-style: italic;
+        padding-top: 5vw;
+        padding-bottom: 5vw;
+        padding-right: 3vw;
+        padding-left: 3vw;
+        margin-top: -6.5vw;
+
+    }
+    /*Logo de citation accueil sur image*/
+    #citation_accueil h1{
+        font-size: 12vw;
+        margin-bottom: -3vw;
+    }
+    /*Texte sur image sous forme d'une citation*/
+    #citation_accueil p{
+        font-size: 3vw;
+    }
+
+
+
+    #onglet_loc_ul{
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+        background-image: url("/ACCUEIL/Images/Ciatdelle\ Belvedere.webp");
+        background-size: cover;
+        backdrop-filter: blur(20px);
+        padding-top: 20px;
+    }
+    #carte_google_maps img{
+        border: solid black;
+    }
+    #texte_loc{
+        padding-right: 15vw;      
+        padding-left: 15vw;   
+        margin-bottom: 2vh;
+        margin-top: 2vh;
+        color: white;
+        background-color: black;
+        border-radius: 25px;
+    }
+/*-------------------------------------------------------------------------------------*/
+/*LES INSTANTS GOURMAND (EXEMPLES MIS EN AVANT A L'ACCUEIL)*/
+
+    /*Titre instants gourmand class de texte*/
+    #titre_instant_gourmand{
+        padding-top: 5vw;  
+        padding-bottom: 5vw;
+
+    }
+    /*Class globale pour les images en exemples*/
+    #images_exemples{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        font-size: 1.3vw;
+        text-align: center;
+    }
+    /*Images exemples*/
+    #images_exemples img{
+        width: 24vw;
+        height: 24vw;
+        object-fit: cover;
+        border-radius: 5px;
+        border: solid rgb(255, 255, 255);
+        cursor: pointer;
+        margin: 0.8vw;
+        box-shadow: 10px 15px 20px rgba(0, 0, 0, 0.197);
+    }
+    /*Images exemples au survol*/
+    #images_exemples img:hover{
+        filter: blur(0px);
+        transition:all 0.5s ease-out;
+        transform: scale(1.1);
+        box-shadow: 10px 15px 20px rgba(0, 0, 0, 0.701);
+    }
+    /*Texte (titres) superposés aux images en exemples*/
+    #images_exemples h3{
+        color: rgb(0, 0, 0);
+        font-size: 2vw;
+        background-color: rgba(0, 0, 0, 0.764);
+        border-radius: 2px;
+        color: white;
+        transform: none;
+    }
+    /*Textes superposés aux images en exemples*/
+    #images_exemples a{
+        text-decoration: none;
+    }
+    /*Image 1*/
+    #img_un{
+        position: absolute;
+        margin-left: 4vw;
+        margin-top: 10vw;
+    }
+    /*Image 2*/
+    #img_deux{
+        position: absolute;
+        margin-left: 5vw;
+        margin-top: 10vw;
+    }
+    /*Image 3*/
+    #img_trois{
+        position: absolute;
+        margin-left: 3vw;
+        margin-top: 10vw;
+    }
+    /*Image 4*/
+    #img_quatre{
+        position: absolute;
+        margin-left: 2.5vw;
+        margin-top: 9vw;
+        padding: 0;
+        width: 20vw;
+    }
+    /*Image 5*/
+    #img_cinq{
+        position: absolute;
+        margin-left: 5.5vw;
+        margin-top: 9vw;
+    }
+
+/*-------------------------------------------------------------------------------------*/
+/*PIED DE PAGE*/
+
+    /*Pied de page global*/
+	footer{
+        text-align: center;
+        padding-top: 1vw;
+        border-top: solid 0.5px;
+        padding-bottom: 1vw;
+        background-color: #00000027;
+        font-style: italic;
+    }
+    /*Logos réseaux sociaux en pied de page*/
+    footer img{
+        width: 25px;
+    }
+    /*Logos réseaux sociaux en pied de page au survol*/
+    footer img:hover{
+        filter: blur(0.5px);
+    }
+    /*Logos réseaux sociaux en pied de page liste ul*/
+    footer ul{
+        display: flex;
+        justify-content: center;
+        list-style: none;
+        flex-direction: row;
+        padding-left: 0;
+    }
+    #avis{
+        height: 6vw;
+        white-space: pre-wrap; 
+        word-wrap: break-word;
+    }
+    /*Logos réseaux sociaux en pied de page liste li*/
+    footer li{
+        margin-inline: 1vw;
+    }
+
+/*-------------------------------------------------------------------------------------*/
+/*ADAPTATION DE LA PAGE POUR SMARTPHONES
+/*-------------------------------------------------------------------------------------*/
+
+    @media only screen and (max-width: 950px){
+        /*Barre de défilement sur tel*/
+        #barre_de_defilement_superieur {
+            font-size: 2vh;
+        }
+        #menu.scrolled{
+            justify-content: space-between;
+        }
+        #menu.scrolled:hover {
+            transform: none;
+        }
+        /* Adaptation logo "Thom Patiss'"*/
+        #logo_sup_gauche {
+            width: 25vw;
+            margin-right: 0.625vw;
+            border: none;
+            justify-content: center;
+            align-items: center;
+            margin-top: 0.4375vw;
+            margin-bottom: 0.4375vw;
+        }
+        /*Logo de menu*/
+        #logo_menu {
+            display: block;
+            margin-right: 1.5vw;
+            z-index: 2;
+            transition: transform 0.2s ease, color 0.2s ease;
+            font-size: 10.5vw;
+        }
+        /*Logo de menu apparence si clic*/
+        #logo_menu.logo-open {
+            color: white;
+            transform: rotate(-90deg);
+        }
+        /*Menu global sans activation du logo menu*/
+        #ul_global_menu {
+            display: none;
+            margin-left: -100vw;
+            transition: margin-left 0.5s ease;
+        }
+        /*Menu si activation logo menu*/
+        #ul_global_menu.menu_mobile {
+            position: fixed;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 0;
+            width: 100vw;
+            height: 102%;
+            top: -3%;
+            left: 0;
+            background-color: #0000008b;
+            backdrop-filter: blur(6px);
+            z-index: 2;
+            margin-left: 0;
+            transition: all 1s ease-in-out;
+        }
+        /*Menu liste li*/
+        #ul_global_menu.menu_mobile li {
+            list-style: none;
+            margin-top: 4vw;
+            width: 100vw;
+
+        }
+        /*Menu écriture*/
+        #ul_global_menu.menu_mobile a {
+            color: white;
+            font-weight: bold;
+            font-size: 4vw;
+            text-decoration: none;
+            background-color: black;
+            padding: 1.5vw 3vw;
+            border-radius: 0.3125vw;
+            transition: background-color 0.3s ease-in-out;
+            display: block;
+            text-align: center;
+        }
+        /*Menu onglets au survol*/
+        #ul_global_menu.menu_mobile a:active {
+            background-color: #00000084;
+        }
+        /*Sous menu de recettes*/
+        #sous_menu_recettes{
+            display: flex;
+            margin-left: -110vw;
+            padding: 2vw;
+            border-radius: 5%;
+            z-index: 0;
+        }
+        /*Recette onglet au survol*/
+        #recette_onglet:active #sous_menu_recettes{
+            padding-top: 0vw;
+            margin-left: 0vw;
+        }
+        #image_haut_accueil{
+            display: none;
+        }
+        #image_haut_accueil_tel{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            max-width: 100vw;
+            overflow: hidden;
+        }
+        #image_haut_accueil_tel img[src="/ACCUEIL/Images/image accueil tel.webp"]{
+            width: 100vw;
+            height: auto;
+            display: block;
+            filter: blur(2px);
+            border: 0;
+        }
+        /*Présentation du site*/
+        #Presentation_site{
+            font-size: 3.5vw;
+        }
+        /*Titre des instants gourmand*/
+        #titre_instant_gourmand{
+            font-size: 4vw;
+        }
+        
+        #onglet_loc_ul{
+            display: none;
+        }
+        /*Clic sur images exemples*/
+        #images_exemples img:hover{
+            filter: none;
+            transform: none;
+        }
+        /*Images exemples taille*/
+        #images_exemples img{
+            width: 45vw;
+            height: 45vw;
+        }
+        /*Texte superposé aux images en exemples*/
+        #images_exemples h3{
+            font-size: 4vw;
+        }
+        /*Image 1*/
+        #img_un{
+            margin-left: 8vw;
+            margin-top: 18vw;
+        }
+        /*Image 2*/
+        #img_deux{
+            margin-left: 8.5vw;
+            margin-top: 18vw;
+        }
+        /*Image 3*/
+        #img_trois{
+            margin-left: 4.5vw;
+            margin-top: 18vw;
+        }
+        /*Image 4*/
+        #img_quatre{
+            margin-left: 3.5vw;
+            margin-top: 15vw;
+            width: 40vw;
+        }
+        /*Image 5*/
+        #img_cinq{
+            margin-left: 9vw;
+            margin-top:15vw;
+        }
+    }
