@@ -256,17 +256,19 @@ body {
     #texte_centrer_sur_image_accueil img{
         width: 6vw;
         height: auto;
-        transition: opacity 0.5s ease;
+        transition: all 0.5s ease-in-out;
         border-radius: 50vw;
         box-shadow: 
         0 0 0.625vw rgba(255, 255, 255, 0.8), 
         0 0 1.25vw rgba(255, 255, 255, 0.8), 
         0 0 1.875vw rgba(255, 255, 255, 0.8);;
     }
-    /*Réseaux sociaux sur images accuueil lors du survol*/
+    /*Réseaux sociaux sur image accueil lors du survol*/
     #texte_centrer_sur_image_accueil img:hover{
         opacity: 0.6;
+        transform: rotate(360deg);
     }
+
 
     #ul_toutes_videos video{
         width: 20vw;
@@ -289,11 +291,12 @@ body {
         text-align: center;
         border: solid rgb(255, 255, 255);
         box-shadow: 10px 15px 20px rgba(0, 0, 0, 0.701);
-        border-radius: 20px;    
+        border-radius: 20px;
+        transition: all 0.3s ease-in-out;
     }
     #ul_toutes_videos li:hover{
         transform: scale(1.1);
-        transition: transform 0.3s ease;
+        box-shadow: 0px 0px 80px black;
     }
     #ul_toutes_videos h3{
         font-style: italic;

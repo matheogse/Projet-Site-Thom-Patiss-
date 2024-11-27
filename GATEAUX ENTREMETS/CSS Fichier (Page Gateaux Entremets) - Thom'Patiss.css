@@ -259,7 +259,7 @@ body {
     #texte_centrer_sur_image_accueil img{
         width: 6vw;
         height: auto;
-        transition: opacity 0.5s ease;
+        transition: all 0.5s ease-in-out;
         border-radius: 50vw;
         box-shadow: 
         0 0 0.625vw rgba(255, 255, 255, 0.8), 
@@ -269,7 +269,9 @@ body {
     /*Réseaux sociaux sur image accueil lors du survol*/
     #texte_centrer_sur_image_accueil img:hover{
         opacity: 0.6;
+        transform: rotate(360deg);
     }
+
 /*-------------------------------------------------------------------------------------*/
 /*IMAGES DES BUCHES*/
     #images_buches_ul {
@@ -289,7 +291,7 @@ body {
             0 0 0.625vw rgba(0, 0, 0, 0.9), 
             0 0 1.25vw rgba(255, 255, 255, 0.8), 
             0 0 1.875vw rgba(255, 255, 255, 0.8);
-        transition: transform 0.3s ease;
+        transition: all 0.4s ease-in-out;
         margin: 2vw;
         background-color: white;
         display: flex;
@@ -299,6 +301,9 @@ body {
     
     #images_buches_ul li:hover {
         transform: scale(1.1);
+        background-color: black;
+        color: white;
+        border-radius: 0 0 8vw 8vw;
     }
     #images_buches_ul h2{
         text-align: center;

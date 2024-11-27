@@ -258,7 +258,7 @@ body {
     #texte_centrer_sur_image_accueil img{
         width: 6vw;
         height: auto;
-        transition: opacity 0.5s ease;
+        transition: all 0.5s ease-in-out;
         border-radius: 50vw;
         box-shadow: 
         0 0 0.625vw rgba(255, 255, 255, 0.8), 
@@ -268,6 +268,7 @@ body {
     /*Réseaux sociaux sur image accueil lors du survol*/
     #texte_centrer_sur_image_accueil img:hover{
         opacity: 0.6;
+        transform: rotate(360deg);
     }
 
 /*-------------------------------------------------------------------------------------*/
@@ -393,12 +394,12 @@ body {
         cursor: pointer;
         margin: 0.8vw;
         box-shadow: 10px 15px 20px rgba(0, 0, 0, 0.197);
+        transition:all 1s ease-in-out;
     }
     /*Images exemples au survol*/
     #images_exemples img:hover{
         filter: blur(0px);
-        transition:all 0.5s ease-out;
-        transform: scale(1.1);
+        transform: scale(1.2);
         box-shadow: 10px 15px 20px rgba(0, 0, 0, 0.701);
     }
     /*Texte (titres) superposés aux images en exemples*/
